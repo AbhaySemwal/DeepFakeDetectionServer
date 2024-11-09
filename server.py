@@ -111,7 +111,8 @@ def detectFakeVideo(videoPath):
 @app.route('/Detect', methods=['POST'])
 def DetectPage():
     video = request.files['video']
-    video_filename = secure_filename(video.filename)
+    original_extension = video.filename.rsplit('.', 1)[-1]  # Get the file extension
+    video_filename = f"vdo.{original_extension}"
     video.save(os.path.join(app.config['UPLOAD_FOLDER'], video_filename))
     video_path = os.path.join(app.config['UPLOAD_FOLDER'], video_filename)
     prediction = detectFakeVideo(video_path)
