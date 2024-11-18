@@ -22,7 +22,7 @@ if not os.path.exists(UPLOAD_FOLDER):
     os.makedirs(UPLOAD_FOLDER)
 
 app = Flask(__name__)
-CORS(app)
+CORS(app, resources={r"/Detect": {"origins": "*"}})
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
 class Model(nn.Module):
